@@ -1,5 +1,4 @@
 sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt autoremove -y
-sudo apt-get install -y vim
 sudo snap install --classic code
 sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
