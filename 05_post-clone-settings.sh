@@ -1,4 +1,4 @@
-# cd ~/repos
+cd ~/repos
 cd SensorFusion/ros/catkin_ws
 pip install setuptools gdown
 export PATH=$PATH:~/.local/bin
