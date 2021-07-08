@@ -155,8 +155,8 @@ RUN echo 'Etc/UTC' > /etc/timezone && \
 
 # install packages
 RUN apt-get update && apt-get install -q -y --no-install-recommends \
-    python-pip \
-    python-mako \ 
+    ccache
+    python3-pip \
     python3-mako \ 
     dirmngr \
     gnupg2 \
@@ -169,7 +169,7 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     # libncurses5:i386 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN pip install mako
+RUN python3 -m pip install mako
 
 RUN sudo dpkg-reconfigure dash
 
@@ -257,10 +257,10 @@ ENV LC_ALL C.UTF-8
 # ENTRYPOINT ["/ros_entrypoint.sh"]
 # CMD ["bash"]
 
-# ENV HOME /home/josh
-# ENV USER josh
-RUN useradd -ms /bin/bash josh
-USER josh
+# ENV HOME /home/root
+# ENV USER root
+# RUN useradd -ms /bin/bash root
+USER root
 # WORKDIR $HOME/ti
 
 # # visual studio code
@@ -272,22 +272,8 @@ USER josh
 # ADD docker_home/initial-vcode.sh $HOME/.initial-vcode.sh
 # ADD docker_home/run-vcode.sh $HOME
 
-# USER coolwind
-# WORKDIR /home/coolwind
-
-
 # ros env
 # node들을 실행할때 필요한 환경변수들은 미리 초기화 한다.
-# RUN echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> $HOME/.bashrc
-# RUN echo "source /root/catkin_ws/devel/setup.bash" >> $HOME/.bashrc
-# RUN echo "export ROS_MASTER_URI=http://localhost:11311" >> $HOME/.bashrc
-# RUN echo "export ROS_HOSTNAME=localhost" >> $HOME/.bashrc
-# RUN echo "export ROS_VERSION=1" >> $HOME/.bashrc
-
-# RUN echo "alias cw='cd /root/catkin_ws'" >> $HOME/.bashrc
-# RUN echo "alias cs='cd /root/catkin_ws/src'" >> $HOME/.bashrc
-# RUN echo "alias cm='cd /root/catkin_ws && catkin_make'" >> $HOME/.bashrc
-
 RUN echo "alias eb='vim ~/.bashrc'" >> $HOME/.bashrc
 RUN echo "alias eba='vim ~/.bash_aliases'" >> $HOME/.bashrc
 RUN echo "alias sb='source ~/.bashrc'" >> $HOME/.bashrc
@@ -299,7 +285,7 @@ RUN echo "alias l='ls -CF'" >> $HOME/.bashrc
 RUN echo "alias rm='rm -i'" >> $HOME/.bashrc
 RUN echo "alias mv='mv -i'" >> $HOME/.bashrc
 RUN echo "alias cp='cp -i'" >> $HOME/.bashrc
-RUN echo "GCC92PATH=$HOME/ti/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin:$HOME/ti/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin" >> $HOME/.bashrc
+RUN echo "GCC92PATH=/soc/ti/gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu/bin:$HOME/ti/gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf/bin" >> $HOME/.bashrc
 RUN echo "export PATH=\$GCC92PATH:\$PATH" >> $HOME/.bashrc
-RUN echo "CCTOOLSPATH=$HOME/ti/ti-processor-sdk-linux-j7-evm-07_03_00_05/linux-devkit/sysroots/x86_64-arago-linux/usr/bin" >> $HOME/.bashrc
+RUN echo "CCTOOLSPATH=/soc/ti/ti-processor-sdk-linux-j7-evm-07_03_00_05/linux-devkit/sysroots/x86_64-arago-linux/usr/bin" >> $HOME/.bashrc
 RUN echo "export PATH=\$CCTOOLSPATH:\$PATH" >> $HOME/.bashrc

@@ -7,5 +7,5 @@ echo "ARAGO_BRAND  = \"psdkla\"" >> conf/local.conf
 echo "DISTRO_FEATURES_append = \" virtualization\"" >> conf/local.conf
 echo "IMAGE_INSTALL_append = \" docker\"">> conf/local.conf
 . conf/setenv
-TOOLCHAIN_BASE=/home/josh/ti  MACHINE=j7-evm bitbake -k tisdk-default-image
+TOOLCHAIN_BASE=/soc/ti  MACHINE=j7-evm bitbake -k tisdk-default-image
 

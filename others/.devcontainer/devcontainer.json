@@ -40,7 +40,7 @@
         // "--volume=${localWorkspaceFolder}/:${env:HOME}${env:USERPROFILE}/ti",
         // "--volume=${localEnv:PWD}/:${env:HOME}${env:USERPROFILE}/ti",
         // "--volume=${env:HOME}${env:USERPROFILE}:${env:HOME}${env:USERPROFILE}",
-        "--volume=/soc/ti:${env:HOME}/ti",
+        "--volume=/soc/ti:/soc/ti",
         "--volume=/run/user/${env:USER_UID}/pulse:/run/user/1000/pulse",
         // "--env", "ROS_MASTER_URI=http://localhost:11311",
         // "--env", "ROS_VERSION=1",
@@ -60,5 +60,5 @@
     },
     // "postCreateCommand": "bash /root/catkin_ws/src/docker-setup.sh",
     // "workspaceMount": "src=${localWorkspaceFolder}/,dst=${env:HOME}/ti/,type=bind,consistency=cached",
-    "workspaceFolder": "${env:HOME}/ti"
+    "workspaceFolder": "/soc/ti"
 }
