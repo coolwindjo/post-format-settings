@@ -111,7 +111,7 @@ RUN apt-get update && \
         openjdk-8-jdk lzop wget git-core unzip \
         genisoimage sudo socat xterm gawk cpio texinfo \
         gettext vim diffstat chrpath rsync \
-        python-mako libusb-1.0-0-dev exuberant-ctags \
+        python3-mako libusb-1.0-0-dev exuberant-ctags \
         pngcrush schedtool xsltproc zip zlib1g-dev libswitch-perl && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -155,7 +155,7 @@ RUN echo 'Etc/UTC' > /etc/timezone && \
 
 # install packages
 RUN apt-get update && apt-get install -q -y --no-install-recommends \
-    ccache
+    ccache \
     python3-pip \
     python3-mako \ 
     dirmngr \
@@ -259,8 +259,10 @@ ENV LC_ALL C.UTF-8
 
 # ENV HOME /home/root
 # ENV USER root
-# RUN useradd -ms /bin/bash root
-USER root
+RUN useradd -ms /bin/bash lgecnn
+# RUN groupadd -g ${gid} ${group} && useradd -u ${uid} -g ${group} -s /bin/sh ${user}
+# RUN groupadd -r lgecnn && useradd --no-log-init -r -g lgecnn lgecnn
+USER lgecnn
 # WORKDIR $HOME/ti
 
 # # visual studio code
