@@ -2,6 +2,7 @@ cd ~/repos
 cd SensorFusion/ros/catkin_ws
 pip install setuptools gdown
 export PATH=$PATH:~/.local/bin
+gdown --id 1kb5_Bz7gS7LIPsbF34SIk25e3zu98Ygs --output short_sample_1.bag
 gdown --id 1qsRcCEStqcpRRNeYRx2BRzpust8Zx27B --output car_detection.bag
 gdown --id 1m2dj1Y4pqClBzApfGHmkBCsKMyLJkYGD --output human_car_best.bag
 gdown --id 14ORSauKEp2Nt2VgwZqa0KwdKRdkvJ1Kp --output overtaking_backward.bag
