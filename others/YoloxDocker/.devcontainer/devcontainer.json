@@ -1,0 +1,58 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.128.0/containers/python-3
+{
+	"name": "yolox-container",
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [8888],
+
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	// Set *default* container specific settings.json values on container create.
+		// "--ipc=host",
+        // "--volume=/tmp/.X11-unix:/tmp/.X11-unix:ro",
+	"runArgs": [
+		"--rm",
+		"-it",
+		"--net=host",
+		"--privileged",
+		"--gpus", "all",
+		"--env", "NVIDIA_VISIBLE_DEVICES=all",
+		"--env", "NVIDIA_DRIVER_CAPABILITIES=all",
+		"--env", "DISPLAY=${env:DISPLAY}",
+		"--env", "QT_X11_NO_MITSHM=1",
+		"--cap-add=SYS_PTRACE",
+		"--security-opt", "seccomp=unconfined",
+		"--volume=/tmp/.X11-unix:/tmp/.X11-unix:rw",
+		// "--volume=${HOME}/.ssh:${HOME}/.ssh",
+		// "--volume=${localWorkspaceFolder}:/workspaces/YoloxDocker",
+		"--volume=/run/user/${env:USER_UID}/pulse:/run/user/1001/pulse",
+		"--group-add=plugdev",
+		"--group-add=video",
+		// "--workdir=/workspaces",
+		"--env", "CONTAINER_NAME=yolox-container",
+		"--name=yolox-container"
+	],
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.pythonPath": "/opt/conda/bin/python",
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": true,
+		"python.formatting.autopep8Path": "/opt/conda/bin/autopep8",
+		"python.formatting.blackPath": "/opt/conda/bin/black",
+		"python.formatting.yapfPath": "/opt/conda/bin/yapf",
+		"python.linting.banditPath": "/opt/conda/bin/bandit",
+		"python.linting.flake8Path": "/opt/conda/bin/flake8",
+		"python.linting.mypyPath": "/opt/conda/bin/mypy",
+		"python.linting.pycodestylePath": "/opt/conda/bin/pycodestyle",
+		"python.linting.pydocstylePath": "/opt/conda/bin/pydocstyle",
+		"python.linting.pylintPath": "/opt/conda/bin/pylint"
+	},
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-python.python"
+	]
+}
