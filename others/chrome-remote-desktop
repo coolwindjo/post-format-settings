@@ -73,8 +73,7 @@ XORG_DUMMY_VIDEO_RAM = 1048576 # KiB
 # with large or multiple monitors. This is a comma-separated list of
 # resolutions that will be made available if the X server supports RANDR. These
 # defaults can be overridden in ~/.profile.
-#DEFAULT_SIZES = "1600x1200,3840x2560"
-DEFAULT_SIZES = "3840x2560"
+DEFAULT_SIZES = "1600x1200,3840x2560"
 
 # Xorg's dummy driver only supports switching between preconfigured sizes. To
 # make resize-to-fit somewhat useful, include several common resolutions by
@@ -108,7 +107,7 @@ DEBIAN_XSESSION_PATH = "/etc/X11/Xsession"
 
 X_LOCK_FILE_TEMPLATE = "/tmp/.X%d-lock"
 #FIRST_X_DISPLAY_NUMBER = 20
-FIRST_X_DISPLAY_NUMBER = 0
+FIRST_X_DISPLAY_NUMBER = 1
 
 # Amount of time to wait between relaunching processes.
 SHORT_BACKOFF_TIME = 5
@@ -783,7 +782,7 @@ class Desktop:
     self._setup_gnubby()
     #self._launch_x_server(x_args)
     #if not self._launch_pre_session():
-    #  # If there was no pre-session script, launch the session immediately.
+      # If there was no pre-session script, launch the session immediately.
     #  self.launch_x_session()
     display = self.get_unused_display_number()
     self.child_env["DISPLAY"] = ":%d" % display
@@ -833,12 +832,13 @@ class Desktop:
     """Send SIGTERM to all procs and wait for them to exit. Will fallback to
     SIGKILL if a process doesn't exit within 10 seconds.
     """
-    for proc, name in [(self.x_proc, "X server"),
-                       (self.pre_session_proc, "pre-session"),
+    for proc, name in [(self.host_proc, "host"),
                        (self.session_proc, "session"),
-                       (self.host_proc, "host")]:
+                       (self.pre_session_proc, "pre-session"),
+                       (self.x_proc, "X server")]:
+      logging.info("Shutting down %s: %s", name, proc and proc.pid)
       if proc is not None:
-        logging.info("Terminating " + name)
+        logging.info("Sending SIGTERM to %s proc.", name)
         try:
           psutil_proc = psutil.Process(proc.pid)
           psutil_proc.terminate()
@@ -1900,7 +1900,7 @@ Web Store: https://chrome.google.com/remotedesktop"""
       desktop.host_ready = False
 
       # These exit-codes must match the ones used by the host.
-      # See remoting/host/host_exit_codes.h.
+      # See remoting/host/base/host_exit_codes.h.
       # Delete the host or auth configuration depending on the returned error
       # code, so the next time this script is run, a new configuration
       # will be created and registered.
@@ -1928,6 +1928,9 @@ Web Store: https://chrome.google.com/remotedesktop"""
           return 0
         elif os.WEXITSTATUS(status) == 107:
           logging.info("Remote access is disallowed by policy - exiting.")
+          return 0
+        elif os.WEXITSTATUS(status) == 108:
+          logging.info("This CPU is not supported - exiting.")
           return 0
         else:
           logging.info("Host exited with status %s." % os.WEXITSTATUS(status))
