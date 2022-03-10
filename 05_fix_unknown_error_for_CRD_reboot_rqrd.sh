@@ -1,4 +1,5 @@
 /opt/google/chrome-remote-desktop/chrome-remote-desktop --stop
+sudo apt-get remove chrome-remote-desktop
 sudo rm -rf /opt/google/chrome-remote-desktop/
 sudo rm -rf ~/.config/chrome-remote-desktop/
 sudo rm -rf ~/.cache/
