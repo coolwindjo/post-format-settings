@@ -1,3 +1,7 @@
+sudo apt-get remove docker docker-engine docker.io containerd runc
+sudo rm -rf /var/lib/docker /etc/docker /etc/apparmor.d/docker /var/run/docker.sock /usr/local/bin/docker-compose /etc/docker
+sudo groupdel docker ~/.docker
+
 curl https://get.docker.com | sh
 
 sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt autoremove -y
@@ -9,4 +13,6 @@ echo \
 sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 apt-cache madison docker-ce
-sudo apt-get install -y docker-ce=5:20.10.3~3-0~ubuntu-bionic docker-ce-cli=5:20.10.3~3-0~ubuntu-bionic containerd.io
+# sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
+sudo apt-get install -y docker-ce=5:20.10.13~3-0~ubuntu-focal docker-ce-cli=5:20.10.13~3-0~ubuntu-focal containerd.io
+# sudo apt-get install -y docker-ce=5:20.10.13~3-0~ubuntu-bionic docker-ce-cli=5:20.10.13~3-0~ubuntu-bionic containerd.io
