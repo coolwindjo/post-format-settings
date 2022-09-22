@@ -1,4 +1,6 @@
-cd ~/repos
+mkdir -p ~/repos && cd ~/repos
+git clone --recursive git@github.com:SensorFusionProject/SensorFusion.git
+# git submodule update --init --recursive
 cd SensorFusion/ros/catkin_ws
 pip install setuptools gdown
 export PATH=$PATH:~/.local/bin

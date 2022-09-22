@@ -10,7 +10,6 @@ echo "deb http://developer.download.nvidia.com/compute/cuda/repos/$distribution/
 sudo apt-get update -y
 sudo apt-get -y install cuda-drivers
 
-
 sudo rm /etc/apt/sources.list.d/cuda.list
 sudo rm /etc/apt/sources.list.d/nvidia-ml.list
 sudo apt-key del 7fa2af80
