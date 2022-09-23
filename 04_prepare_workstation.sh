@@ -30,7 +30,7 @@ sudo bash -c "echo '10.10.156.33    mcloud.mobis.co.kr' >> /etc/hosts"
 sudo bash -c "echo '10.10.156.210   one.mobis.co.kr' >> /etc/hosts"
 sudo bash -c "echo '101.1.39.47 igw.mobis.co.kr' >> /etc/hosts"
 sudo bash -c "echo '10.230.112.181 coverity.mobis.co.kr' >> /etc/hosts"
-sudo bash -c "echo '211.217.53.139  tas.mobis.co.kr\n' >> /etc/hosts"
+sudo bash -c "echo '211.217.53.139  tas.mobis.co.kr' >> /etc/hosts"
 
 sudo bash -c "echo '# HYUNDAI' >> /etc/hosts"
 sudo bash -c "echo '10.7.18.27 synergy.ccos.dev' >> /etc/hosts"
