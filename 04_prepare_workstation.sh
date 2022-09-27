@@ -1,3 +1,5 @@
+sudo snap install --classic cmake
+
 sudo apt-get update -y && sudo apt-get install -q -y \
 	net-tools \
 	libpcap-dev \
@@ -13,6 +15,7 @@ sudo apt-get update -y && sudo apt-get install -q -y \
 sudo apt-get update -y && sudo apt-get install -q -y \
 	qt5-default \
 	qttools5-dev \
+	qtcreator \
 && sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
 
 sudo bash -c "echo '# MOBIS' >> /etc/hosts"
