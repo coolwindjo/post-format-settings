@@ -1,6 +1,5 @@
-sudo snap install --classic cmake
-
 sudo apt-get update -y && sudo apt-get install -q -y \
+	cmake \
 	net-tools \
 	libpcap-dev \
 	libavformat-dev \
