@@ -4,6 +4,7 @@ sudo apt-get update -y && sudo apt-get install -q -y \
 	wget \
 	build-essential gdb clang lldb g++-10 \
 	python3 \
+	git \
 && sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
 # xvfb \
 # xbase-clients \
