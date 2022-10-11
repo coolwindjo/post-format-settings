@@ -21,6 +21,9 @@ sudo apt-key del 3bf863cc
 
 driver_version_prefix_dot=11.8
 driver_version_prefix_hyphen=11-8
+driver_version=${driver_version_prefix_dot}.0
+distro_driver=$distro-$driver_version_prefix_hyphen-local
+distro_version_arch=${distro_driver}_$driver_version-520.61.05-1_amd64
 
 #################################
 ## Network Repo Installation
@@ -30,10 +33,7 @@ echo "sudo dpkg -i cuda-keyring_1.0-1_all.deb"
 sudo dpkg -i cuda-keyring_1.0-1_all.deb
 
 ## Local Repo Installation
-# driver_version=${driver_version_prefix_dot}.0
-# distro_driver=$distro-$driver_version_prefix_hyphen-local
-# distro_version_arch=${distro_driver}_$driver_version-520.61.05-1_amd64
-# # wget http://developer.download.nvidia.com/compute/cuda/$driver_version/local_installers/cuda-repo-$distro_version_arch.deb
+# wget http://developer.download.nvidia.com/compute/cuda/$driver_version/local_installers/cuda-repo-$distro_version_arch.deb
 # echo "sudo dpkg -i cuda-repo-$distro_version_arch.deb"
 # sudo dpkg -i cuda-repo-$distro_version_arch.deb
 # echo "sudo cp /var/cuda-repo-$distro_driver/cuda-*-keyring.gpg /usr/share/keyrings/"
