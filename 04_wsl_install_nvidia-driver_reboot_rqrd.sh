@@ -11,7 +11,8 @@ sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
 sudo apt-key del 7fa2af80
 sudo apt-key del 3bf863cc
 
-driver_version_prefix=11.8
+driver_version_prefix_dot=11.8
+driver_version_prefix_hyphen=11-8
 
 #################################
 ## Network Repo Installation
@@ -21,8 +22,8 @@ driver_version_prefix=11.8
 # sudo dpkg -i cuda-keyring_1.0-1_all.deb
 
 ## Local Repo Installation
-driver_version=${driver_version_prefix}.0
-distro_driver=wsl-ubuntu-$driver_version_prefix-local
+driver_version=${driver_version_prefix_dot}.0
+distro_driver=$distro-$driver_version_prefix_hyphen-local
 distro_version_arch=${distro_driver}_$driver_version-1_amd64
 # wget https://developer.download.nvidia.com/compute/cuda/11.7.0/local_installers/cuda-repo-wsl-ubuntu-11-7-local_11.7.0-1_amd64.deb
 wget http://developer.download.nvidia.com/compute/cuda/$driver_version/local_installers/cuda-repo-$distro_version_arch.deb
@@ -38,8 +39,8 @@ sudo apt-get update -y
 sudo apt -y install cuda\
 && sudo apt -y install nvidia-gds
 
-export PATH=/usr/local/cuda-$driver_version_prefix/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-$driver_version_prefix/lib64\
+export PATH=/usr/local/cuda-$driver_version_prefix_dot/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-$driver_version_prefix_dot/lib64\
                          ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 sudo apt-get install g++ freeglut3-dev build-essential libx11-dev \
