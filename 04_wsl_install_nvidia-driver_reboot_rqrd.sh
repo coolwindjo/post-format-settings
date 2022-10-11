@@ -2,8 +2,8 @@ echo "lspci | grep -i nvidia"
 lspci | grep -i nvidia
 echo "uname -m && cat /etc/*release"
 uname -m && cat /etc/*release
-echo "sudo apt-get install linux-headers-$(uname -r)"
-sudo apt-get install linux-headers-$(uname -r)
+# echo "sudo apt-get install linux-headers-$(uname -r)"
+# sudo apt-get install linux-headers-$(uname -r)
 
 wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
 sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
@@ -11,8 +11,8 @@ sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
 sudo apt-key del 7fa2af80
 sudo apt-key del 3bf863cc
 
-driver_version_prefix_dot=11.7
-driver_version_prefix_hyphen=11-7
+driver_version_prefix_dot=11.8
+driver_version_prefix_hyphen=11-8
 
 #################################
 ## Network Repo Installation
