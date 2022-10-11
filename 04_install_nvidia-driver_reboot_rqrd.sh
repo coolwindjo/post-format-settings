@@ -19,6 +19,8 @@ sudo apt-key del 3bf863cc
 # sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/$distro/$arch/3bf863cc.pub
 # sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/$arch/7fa2af80.pub
 
+driver_version_prefix=11.8
+
 #################################
 ## Network Repo Installation
 echo "wget https://developer.download.nvidia.com/compute/cuda/repos/$distro/$arch/cuda-keyring_1.0-1_all.deb"
@@ -27,8 +29,8 @@ echo "sudo dpkg -i cuda-keyring_1.0-1_all.deb"
 sudo dpkg -i cuda-keyring_1.0-1_all.deb
 
 ## Local Repo Installation
-# driver_version=11.8.0
-# distro_driver=$distro-11-8-local
+# driver_version=${driver_version_prefix}.0
+# distro_driver=$distro-$driver_version_prefix-local
 # distro_version_arch=${distro_driver}_$driver_version-520.61.05-1_amd64
 # # wget http://developer.download.nvidia.com/compute/cuda/$driver_version/local_installers/cuda-repo-$distro_version_arch.deb
 # echo "sudo dpkg -i cuda-repo-$distro_version_arch.deb"
@@ -43,8 +45,8 @@ sudo apt-get update -y
 sudo apt -y install cuda\
 && sudo apt -y install nvidia-gds
 
-export PATH=/usr/local/cuda-11.8/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64\
+export PATH=/usr/local/cuda-$driver_version_prefix/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-$driver_version_prefix/lib64\
                          ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 
 sudo apt-get install g++ freeglut3-dev build-essential libx11-dev \
