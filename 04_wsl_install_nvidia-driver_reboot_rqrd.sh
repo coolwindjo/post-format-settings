@@ -11,8 +11,8 @@ sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
 sudo apt-key del 7fa2af80
 sudo apt-key del 3bf863cc
 
-driver_version_prefix_dot=11.8
-driver_version_prefix_hyphen=11-8
+driver_version_prefix_dot=11.7
+driver_version_prefix_hyphen=11-7
 
 #################################
 ## Network Repo Installation
@@ -23,7 +23,7 @@ driver_version_prefix_hyphen=11-8
 
 ## Local Repo Installation
 driver_version=${driver_version_prefix_dot}.0
-distro_driver=$distro-$driver_version_prefix_hyphen-local
+distro_driver=wsl-ubuntu-$driver_version_prefix_hyphen-local
 distro_version_arch=${distro_driver}_$driver_version-1_amd64
 # wget https://developer.download.nvidia.com/compute/cuda/11.7.0/local_installers/cuda-repo-wsl-ubuntu-11-7-local_11.7.0-1_amd64.deb
 wget http://developer.download.nvidia.com/compute/cuda/$driver_version/local_installers/cuda-repo-$distro_version_arch.deb
