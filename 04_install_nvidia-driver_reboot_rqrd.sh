@@ -53,11 +53,11 @@ echo "Network Repo Installation"
 echo "sudo apt-get install linux-headers-$(uname -r)"
 # sudo apt-get install linux-headers-$(uname -r)
 
-echo "wget https://developer.download.nvidia.com/compute/cuda/repos/$distribution/$arch/cuda-keyring_1.0-1_all.deb"
-wget https://developer.download.nvidia.com/compute/cuda/repos/$distribution/$arch/cuda-keyring_1.0-1_all.deb
+echo "wget https://developer.download.nvidia.com/compute/cuda/repos/$distribution/$arch/cuda-keyring_1.1-1_all.deb"
+wget https://developer.download.nvidia.com/compute/cuda/repos/$distribution/$arch/cuda-keyring_1.1-1_all.deb
 
-echo "sudo dpkg -i cuda-keyring_1.0-1_all.deb"
-sudo dpkg -i cuda-keyring_1.0-1_all.deb
+echo "sudo dpkg -i cuda-keyring_1.1-1_all.deb"
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
 
 sudo apt-get update -y
 sudo apt-get -y install cuda
