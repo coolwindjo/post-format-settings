@@ -15,6 +15,6 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 apt-cache madison docker-ce
 # sudo apt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
 # sudo apt-get install -y --allow-downgrades docker-ce=5:20.10.23~3-0~ubuntu-jammy docker-ce-cli=5:20.10.23~3-0~ubuntu-jammy containerd.io
-sudo apt-get install -y docker-ce=5:23.0.0-1~ubuntu.22.04~jammy docker-ce-cli=5:23.0.0-1~ubuntu.22.04~jammy containerd.io
+sudo apt-get install -y docker-ce=5:24.0.2-1~ubuntu.22.04~jammy docker-ce-cli=5:24.0.2-1~ubuntu.22.04~jammy containerd.io
 # sudo apt-get install -y docker-ce=5:20.10.13~3-0~ubuntu-focal docker-ce-cli=5:20.10.13~3-0~ubuntu-focal containerd.io
 # sudo apt-get install -y docker-ce=5:20.10.13~3-0~ubuntu-bionic docker-ce-cli=5:20.10.13~3-0~ubuntu-bionic containerd.io
