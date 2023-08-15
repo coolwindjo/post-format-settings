@@ -1,17 +1,17 @@
-From ff2bad6aaed401acb92b3cb161bf8c5929adf09d Mon Sep 17 00:00:00 2001
-From: "CoolWind@Cool-WSL" <coolwind@hotmail.co.kr>
+From 1e2c61fa8f85828302dd57c8622db33677cb7447 Mon Sep 17 00:00:00 2001
+From: "CoolWind@Cool-WSL" <CoolWind@Cool-WSL>
 Date: Tue, 15 Aug 2023 19:42:49 +0900
 Subject: [PATCH] modify to use CARLA-Autoware
 
 ---
- Dockerfile | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+ Dockerfile | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/Dockerfile b/Dockerfile
-index eb2547d..61676a9 100644
+index eb2547d..de98ff8 100644
 --- a/Dockerfile
 +++ b/Dockerfile
-@@ -23,10 +23,16 @@ RUN echo "export PYTHON2_EGG=$(ls /home/autoware/PythonAPI | grep py2.)" >> .bas
+@@ -23,10 +23,18 @@ RUN echo "export PYTHON2_EGG=$(ls /home/autoware/PythonAPI | grep py2.)" >> .bas
  # There is some kind of mismatch between the ROS debian packages installed in the Autoware image and
  # the latest ros-melodic-ackermann-msgs and ros-melodic-derived-objects-msgs packages. As a
  # workaround we use a snapshot of the ROS apt repository to install an older version of the required
@@ -19,6 +19,8 @@ index eb2547d..61676a9 100644
 +# packages.
  RUN sudo rm -f /etc/apt/sources.list.d/ros1-latest.list
  RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key 4B63CF8FDE49746E98FA01DDAD19BAB3CBF125EA
++# RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A4B469963BF863CC
++# RUN sudo apt-get update
  RUN sudo sh -c 'echo "deb http://snapshots.ros.org/melodic/2020-08-07/ubuntu $(lsb_release -sc) main" >> /etc/apt/sources.list.d/ros-snapshots.list'
 +RUN sudo rm /etc/apt/sources.list.d/cuda.list
 +RUN sudo rm /etc/apt/sources.list.d/nvidia-ml.list
@@ -29,7 +31,7 @@ index eb2547d..61676a9 100644
  RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends \
          python-pip \
          python-wheel \
-@@ -53,4 +59,3 @@ RUN echo "export CARLA_AUTOWARE_CONTENTS=~/autoware-contents" >> .bashrc \
+@@ -53,4 +61,3 @@ RUN echo "export CARLA_AUTOWARE_CONTENTS=~/autoware-contents" >> .bashrc \
      && echo "source ~/Autoware/install/setup.bash" >> .bashrc
  
  CMD ["/bin/bash"]

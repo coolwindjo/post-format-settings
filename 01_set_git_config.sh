@@ -1,3 +1,4 @@
+#!/bin/bash
 git config --global user.email \
     "mailID@address.com"
     # "coolwind@hotmail.co.kr"

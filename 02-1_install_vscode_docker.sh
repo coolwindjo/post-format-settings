@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt autoremove -y
 sudo snap install --classic code
 
